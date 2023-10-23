@@ -49,8 +49,9 @@ export default function Home() {
             loader={
                 <div className="loading h-[50px] w-[50px] mx-auto" style={{ backgroundImage: `url('${spinner}')`, backgroundRepeat: "no-repeat", backgroundPosition: "center", backgroundSize: "cover" }}></div>
             }
+            className='w-full h-screen pt-20 overflow-y-scroll'
         >
-            <div className="home-main h-screen pt-20 overflow-y-scroll relative">
+            <div className="home-main">
                 <div className="home-content">
                     {videos.length === 0 ? (
                         <div className="loading h-[50px] w-[50px] mx-auto" style={{ backgroundImage: `url('${spinner}')`, backgroundRepeat: "no-repeat", backgroundPosition: "center", backgroundSize: "cover" }}></div>
