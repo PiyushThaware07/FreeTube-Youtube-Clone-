@@ -69,18 +69,19 @@ export default function SearchVideo(props) {
                                 channelDetails && channelDetails.length !== 0 ? (
                                     <div className="details sm:ms-[30px] my-[10px] sm:my-0 flex flex-nowrap items-start gap-2 w-[400px]">
                                         <div className="channel-logo cursor-pointer h-[40px] w-[40px] bg-gray-200 rounded-full sm:hidden"
-                                        style={{
-                                            backgroundImage: `url('${channelDetails.snippet?.thumbnails?.high?.url || channelDetails.snippet?.thumbnails?.default?.url}')`,
-                                            backgroundRepeat: "no-repeat",
-                                            backgroundPosition: "center",
-                                            backgroundSize: "cover"
-                                        }}
+                                            style={{
+                                                backgroundImage: `url('${channelDetails.snippet?.thumbnails?.high?.url || channelDetails.snippet?.thumbnails?.default?.url}')`,
+                                                backgroundRepeat: "no-repeat",
+                                                backgroundPosition: "center",
+                                                backgroundSize: "cover"
+                                            }}
 
-                                        onClick={()=>navigate(`/home/channel/${channelDetails.id}`)}
+                                            onClick={() => navigate(`/home/channel/${channelDetails.id}`)}
                                         ></div>
                                         <div className="flex-1">
                                             <h1 className='text-[13px] md:text-[16px] lg:text-lg font-semibold cursor-pointer' onClick={() => navigate(`/home/watch/${props.video.id.videoId}`)}>
-                                                {props.video.snippet?.title.slice(0, 80)}
+                                                <span className='hidden sm:inline'>{props.video.snippet?.title.slice(0, 80)}</span>
+                                                <span className='sm:hidden'>{props.video.snippet?.title.slice(0, 30)}</span>
                                             </h1>
                                             <h1 className='text-[10px] sm:text-[12px] font-semibold mt-2 text-gray-600 sm:hidden'>
                                                 {props.video.snippet?.channelTitle}
@@ -98,10 +99,10 @@ export default function SearchVideo(props) {
                                                         backgroundPosition: "center",
                                                         backgroundSize: "cover"
                                                     }}
-                                                    onClick={()=>navigate(`/home/channel/${channelDetails.id}`)}
+                                                    onClick={() => navigate(`/home/channel/${channelDetails.id}`)}
                                                 ></div>
                                                 <div className="">
-                                                    <h1 className='sm:text-[13px] md:text-sm font-semibold cursor-pointer' onClick={()=>navigate(`/home/channel/${channelDetails.id}`)}>{props.video.snippet.channelTitle}</h1>
+                                                    <h1 className='sm:text-[13px] md:text-sm font-semibold cursor-pointer' onClick={() => navigate(`/home/channel/${channelDetails.id}`)}>{props.video.snippet.channelTitle}</h1>
                                                 </div>
                                             </div>
                                         </div>

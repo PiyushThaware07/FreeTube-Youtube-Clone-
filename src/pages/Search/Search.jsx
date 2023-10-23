@@ -48,7 +48,7 @@ export default function Search() {
                     hasMore={true}
                     next={handleInfinityScroll}
                     loader={<Loading />}
-                    className='w-full h-screen pt-20 overflow-y-scroll'
+                    className='w-full h-screen pt-20 overflow-y-scroll overflow-x-hidden'
                 >
                     <div className="search-main">
                         <div className="search-content w-full sm:py-6 px-[0px] sm:px-4 md:px-8 lg:px-16">
