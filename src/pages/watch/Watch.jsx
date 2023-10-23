@@ -4,7 +4,7 @@ import ReactMarkdown from 'react-markdown';
 // Icons
 import { BiLike, BiDislike } from "react-icons/bi";
 import { PiShareFat } from "react-icons/pi";
-import { BsFillCaretDownFill,BsFillCaretUpFill } from "react-icons/bs";
+import { BsFillCaretDownFill, BsFillCaretUpFill } from "react-icons/bs";
 import { AiOutlineSave } from "react-icons/ai";
 import { useNavigate, useParams } from 'react-router-dom';
 import { Numeral } from 'react-numeral';
@@ -90,7 +90,7 @@ export default function Watch() {
     }
 
 
-    
+
     return (
         <>
             <div className="watch-main h-screen pt-20 overflow-y-scroll relative">
@@ -168,7 +168,7 @@ export default function Watch() {
                                                             truncatedEndingComponent={"... "}
                                                         >
                                                             <ReactMarkdown>
-                                                            {watchDetail.snippet.description}
+                                                                {watchDetail.snippet.description}
                                                             </ReactMarkdown>
                                                         </ShowMoreText>
                                                     </div>
@@ -177,7 +177,7 @@ export default function Watch() {
                                         </div>
 
                                         {
-                                            comments.length === 0 ? "Loading" : (
+                                            comments && comments.length !== 0 ? (
                                                 <div className="comment-section pt-6 md:py-6 mt-4 border-t ">
                                                     <div className="comment-content card">
                                                         <div className="card-body">
@@ -186,7 +186,7 @@ export default function Watch() {
                                                                 <input type="text" placeholder='Add a comment' className='w-full focus:outline-none ps-4 py-[8.5px] rounded-s-full border-[1.5px] border-e-0 border-gray-400' />
                                                                 <button className='h-[40px] px-3 text-gray-600 text-sm font-semibold bg-gray-100 border-[1.5px] border-gray-400 flex flex-nowrap items-center justify-center rounded-e-full'>Comment</button>
                                                             </div>
-                                                            <button type='button' className='bg-gray-100 px-5 py-2 rounded-full text-sm font-semibold mx-auto block md:hidden' onClick={() => handleToggleComent()}><span className='flex flex-nowrap items-center gap-1'>{toggleComment?(<BsFillCaretUpFill/>):(<BsFillCaretDownFill/>)} show comments</span></button> 
+                                                            <button type='button' className='bg-gray-100 px-5 py-2 rounded-full text-sm font-semibold mx-auto block md:hidden' onClick={() => handleToggleComent()}><span className='flex flex-nowrap items-center gap-1'>{toggleComment ? (<BsFillCaretUpFill />) : (<BsFillCaretDownFill />)} show comments</span></button>
                                                             {
                                                                 comments.map((comment, index) => (
                                                                     <span key={index}>
@@ -196,7 +196,7 @@ export default function Watch() {
                                                             }
                                                         </div>
                                                     </div>
-                                                </div>)
+                                                </div>) : "loading"
                                         }
 
                                     </div>
