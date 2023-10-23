@@ -116,16 +116,17 @@ export default function Watch() {
                                             channelDetails.length === 0 ? "" : (
                                                 <div className="flex flex-nowrap items-center justify-between my-2">
                                                     <div className="section-1 flex flex-nowrap items-center">
-                                                        <div className="profile-image h-[40px] w-[40px] rounded-full bg-gray-200"
+                                                        <div className="profile-image h-[40px] w-[40px] rounded-full bg-gray-200 cursor-pointer"
                                                             style={{
                                                                 backgroundImage: `url('${channelThumbnail}')`,
                                                                 backgroundRepeat: "no-repeat",
                                                                 backgroundPosition: "center",
                                                                 backgroundSize: "cover"
                                                             }}
+                                                            onClick={() => navigate(`/home/channel/${watchDetail.snippet.channelId}`)}
                                                         ></div>
                                                         <div className="profile-data ms-2">
-                                                            <h1 className='text-[12px] font-semibold'>{channelDetails.brandingSettings.channel.title}</h1>
+                                                            <h1 className='text-[12px] font-semibold cursor-pointer' onClick={() => navigate(`/home/channel/${watchDetail.snippet.channelId}`)}>{channelDetails.brandingSettings.channel.title}</h1>
                                                             {
                                                                 channelDetails.statistics.hiddenSubscriberCount ? "" : (
                                                                     <h1 className='text-[12px] font-medium uppercase'><Numeral value={channelDetails.statistics.subscriberCount} format={"0,a"} /></h1>
