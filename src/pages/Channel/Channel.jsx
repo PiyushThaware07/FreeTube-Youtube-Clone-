@@ -1,16 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import React from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const navLinks = ["Home", "Videos", "Playlist", "Live"]
 
 export default function Channel() {
-  const { channel_id } = useParams()
-  const location = useLocation()
-  const [activeNav, setAvtiveNav] = useState(false);
-  useEffect(() => {
-    setAvtiveNav(`/home/channel/${channel_id}/*`)
-  }, [])
-  console.log("Location : ", location.pathname);
+  const { channel_id } = useParams();
+  const navigate = useNavigate();
   return (
     <>
       <div className="channel-main">
@@ -45,11 +40,11 @@ export default function Channel() {
               </div>
             </div>
           </div>
-          <div className="channel-section-3 mb-3">
+          <div className="channel-section-3">
             <div className="content flex flex-nowrap items-center border-b-[1.2px] border-gray-300 font-semibold text-sm">
               {
                 navLinks.map((link, index) => (
-                  <button type='button' key={index} className={`flex-1 uppercase tracking-[1.3px]  py-3`}>{link}</button>
+                  <button type='button' key={index} className={`flex-1 uppercase tracking-[1.3px]  py-3`} onClick={() => navigate(`/home/channel/${channel_id}/${link === "Home" ? "" : link}`)}>{link}</button>
                 ))
               }
             </div>

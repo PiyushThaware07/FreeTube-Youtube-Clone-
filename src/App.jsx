@@ -8,9 +8,12 @@ import Sidebar from './components/Sidebar';
 import Login from './pages/Login';
 import Home from './pages/Home/Home';
 import Watch from './pages/watch/Watch';
+import Search from './pages/Search/Search';
 // Channels Handling
 import ChannelHome from './pages/Channel/ChannelHome';
 import ChannelVideos from './pages/Channel/ChannelVideos';
+import ChannelPlaylist from './pages/Channel/ChannelPlaylist';
+
 import Temp from './pages/Temp';
 
 export default function App() {
@@ -35,8 +38,16 @@ export default function App() {
             <Route path='watch/:video_id' element={<Watch />} />
             <Route path='temp' element={<Temp />} />
 
+            {/* Channels */}
             <Route path='channel/:channel_id' element={<ChannelHome />} />
             <Route path='channel/:channel_id/videos' element={<ChannelVideos />} />
+            <Route path='channel/:channel_id/playlist' element={<ChannelPlaylist />} />
+
+            {/* Search */}
+            <Route path='search/:search_id' element={<Search/>} />
+
+
+            <Route path='*' element={<h1>404 page not found</h1>} />
           </Route>
         </Routes>
       </Router>
