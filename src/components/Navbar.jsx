@@ -4,6 +4,8 @@ import { BiMenu, BiSearch } from "react-icons/bi";
 import { PiMonitorPlayFill, PiUserCircleDuotone } from "react-icons/pi";
 import { IoNotificationsCircleOutline, IoSearchCircleOutline } from "react-icons/io5";
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 
 export default function Navbar() {
     const navigate = useNavigate();
@@ -19,6 +21,11 @@ export default function Navbar() {
             setToggleSearch(false);
         }
     }
+
+    // Google auth redux setup
+    const userDetails = useSelector((state) => state.loginReducer);
+    console.log(userDetails.user);
+
     return (
         <>
             <div className="navbar-main px-6 md:px-12 py-3 shadow-md text-gray-700  fixed w-full top-0 z-50  bg-white">
@@ -37,10 +44,21 @@ export default function Navbar() {
                                     <button type='submit' className='h-full px-[15px] rounded-e-full border-[1.5px] border-gray-500 bg-gray-200'><BiSearch className='text-xl' /></button>
                                 </div>
                             </form>
-                            <div className="flex flex-nowrap items-center  gap-1 md:gap-3">
+                            <div className="flex flex-nowrap items-center  gap-[5px] md:gap-[20px]">
                                 <h1 className='h-[35px] w-[35px] flex md:hidden flex-nowrap items-center justify-center rounded-full hover:bg-gray-100' onClick={() => setToggleSearch((value) => !value)}><IoSearchCircleOutline className='text-3xl' /></h1>
                                 <h1 className='h-[35px] w-[35px] flex flex-nowrap items-center justify-center rounded-full hover:bg-gray-100'><IoNotificationsCircleOutline className='text-3xl' /></h1>
-                                <h1 className='h-[35px] w-[35px] flex flex-nowrap items-center justify-center rounded-full hover:bg-gray-100'><PiUserCircleDuotone className='text-3xl' /></h1>
+                                <h1 className={`${userDetails && userDetails.user ? "h-[25px] w-[25px]" : "h-[35px] w-[35px]"} flex flex-nowrap items-center justify-center rounded-full hover:bg-gray-100`}
+                                    style={{
+                                        backgroundImage: `url('${userDetails?.user?.picture || "N/A"}')`,
+                                        backgroundRepeat: "no-repeat",
+                                        backgroundPosition: "center",
+                                        backgroundSize: "cover"
+                                    }}
+                                >
+                                    {
+                                        userDetails && userDetails.user ? "" : (<PiUserCircleDuotone className='text-3xl' />)
+                                    }
+                                </h1>
                             </div>
                         </div>
                     </div>
