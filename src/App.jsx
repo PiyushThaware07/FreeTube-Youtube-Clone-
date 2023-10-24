@@ -13,6 +13,8 @@ import Search from './pages/Search/Search';
 import ChannelHome from './pages/Channel/ChannelHome';
 import ChannelVideos from './pages/Channel/ChannelVideos';
 import ChannelPlaylist from './pages/Channel/ChannelPlaylist';
+// Sidebar Handling
+import History from './pages/Sidebar/History';
 
 import Temp from './pages/Temp';
 
@@ -46,6 +48,10 @@ export default function App() {
 
             {/* Search */}
             <Route path='search/:search_id' element={<Search/>} />
+
+
+            {/* Sidebar Items */}
+            <Route path='history' element={<History/>} />
 
 
             <Route path='*' element={<h1>404 page not found</h1>} />
