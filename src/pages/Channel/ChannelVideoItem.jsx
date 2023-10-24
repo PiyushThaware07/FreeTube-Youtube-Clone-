@@ -25,13 +25,17 @@ export default function ChannelVideoItem(props) {
     useEffect(() => {
         fetchVideos()
     }, [props.video, props.video.id.videoId])
-    
+
     // Duration handling
-    const duration = moment.duration(videoData.contentDetails?.duration);
-    const formatted_duration = duration ? `${duration.minutes()}:${duration.seconds()}` : 'N/A';
+    let formatted_duration = 'N/A'; // Declare formatted_duration here with a default value
+    const contentDetails = videoData?.contentDetails;
+    if (contentDetails) {
+        const duration = moment.duration(contentDetails.duration);
+        formatted_duration = `${duration.minutes()}:${duration.seconds()}`;
+    }
 
 
-    
+
     // console.log("Remaining video details : ", videoData);
     return (
         <>
@@ -51,7 +55,7 @@ export default function ChannelVideoItem(props) {
                     <div className="details my-3">
                         <h2 className='text-sm font-semibold cursor-pointer' onClick={() => navigate(`/home/watch/${props.video.id.videoId}`)}>{props.video.snippet?.title || "N/A"}</h2>
                         <div className="flex flex-nowrap items-center text-[11px] font-medium my-2">
-                            <p><span className="uppercase"><Numeral value={videoData.statistics?.viewCount || "N/A"} format={"0,a"} /></span> views</p>
+                            <p><span className="uppercase"><Numeral value={videoData?.statistics?.viewCount || "N/A"} format={"0,a"} /></span> views</p>
                             <span className='mx-1'><BsDot /></span>
                             <p>{moment(props.video.snippet?.publishedAt || "N/A").fromNow()}</p>
                         </div>

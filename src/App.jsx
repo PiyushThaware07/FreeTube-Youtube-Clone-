@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 // React Router DOM
 import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom';
 // Components
