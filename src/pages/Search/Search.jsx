@@ -24,7 +24,6 @@ export default function Search() {
             const data = await response.json();
             setSearchArray((prevData) => page_token && search_id ? [...prevData, ...data.items] : data.items);
             setPageToken(data.nextPageToken);
-            console.table("Search Data : ", data);
         } catch (error) {
             console.error('Error fetching search videos:', error);
         }

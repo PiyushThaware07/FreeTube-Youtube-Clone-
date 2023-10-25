@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 
 const ApiKey = import.meta.env.VITE_REACT_APP_API_KEY;
-export default function HomeVideo(props) {
+export default function HomeCard(props) {
   const navigate = useNavigate();
   const [channelData, setChannelData] = useState([]);
   const fetchProfile = async () => {

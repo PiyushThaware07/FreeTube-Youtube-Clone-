@@ -7,3 +7,22 @@ async function fetchChannelDetails(channelId) {
 }
 
 export { fetchChannelDetails };
+
+
+
+// channel details fetching
+/*
+const [channelDetails, setChannelDetails] = useState([])
+useEffect(() => {
+    const fetchData = async () => {
+        try {
+            const data = await fetchChannelDetails(props.video.snippet.channelId);
+            setChannelDetails(data.items[0])
+        } catch (error) {
+            console.error("Error fetching channel details:", error);
+        }
+    };
+    fetchData();
+}, [props.video]);
+*/
+

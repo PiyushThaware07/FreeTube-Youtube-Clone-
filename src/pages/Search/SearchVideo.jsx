@@ -4,54 +4,50 @@ import { Numeral } from 'react-numeral';
 import { useNavigate } from 'react-router-dom';
 // Icons
 import { BsDot } from "react-icons/bs";
-
+// API's
+import { fetchVideoDetails } from "../../API/VideoDetailsFetch";
+import { fetchChannelDetails } from "../../API/ChannelDetailsFetch";
 
 const ApiKey = import.meta.env.VITE_REACT_APP_API_KEY;
 export default function SearchVideo(props) {
     const navigate = useNavigate();
 
-    // Handle Views From videos id provided by fetchSearch
-    const [searchVideoDetailsExtends, setSearchVideoDetailsExtends] = useState([]);
-    async function fetchVideos() {
-        try {
-            const url = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${props.video.id.videoId}&key=${ApiKey}`;
-            const response = await fetch(url);
-            const data = await response.json();
-            setSearchVideoDetailsExtends(data.items[0])
-        }
-        catch (error) {
-            console.error("failed to fetch views, channel icons ", error);
-        }
-    }
+    // fetch video data -----------------------------------------------------------------
+    const [videoDetails, setVideoDetails] = useState([])
     useEffect(() => {
-        fetchVideos()
-    }, [props.video, props.video.id.videoId])
-    // console.table("views Fetcing by videoID :", searchVideoDetailsExtends);
+        const fetchData = async () => {
+            try {
+                const data = await fetchVideoDetails(props.video.id.videoId);
+                setVideoDetails(data.items[0]);
+            } catch (error) {
+                console.error("Error fetching channel details:", error);
+            }
+        };
+        fetchData();
+    }, [props.video, props.video.id.videoId]);
+
+    // fetch channel data ---------------------------------------------------------------
+    const [channelDetails, setChannelDetails] = useState([])
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const data = await fetchChannelDetails(props.video.snippet.channelId);
+                setChannelDetails(data.items[0])
+            } catch (error) {
+                console.error("Error fetching channel details:", error);
+            }
+        };
+        fetchData();
+    }, [props.video, props.video.id.videoId]);
 
 
-    // Handle channel icons From videos id provided by fetchSearch
-    const [channelDetails, setChannelDetails] = useState([]);
-    async function fetchChannels() {
-        try {
-            const url = `https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${props.video.snippet.channelId}&key=${ApiKey}`;
-            const response = await fetch(url);
-            const data = await response.json();
-            setChannelDetails(data.items[0])
-        }
-        catch (error) {
-            console.error("failed to fetch views, channel icons ", error);
-        }
-    }
-    useEffect(() => {
-        fetchChannels()
-    }, [props.video, props.video.id.videoId])
-    console.table("Fetching Channel Icons by videoID :", channelDetails);
+
 
     return (
         <>
 
             {
-                searchVideoDetailsExtends && searchVideoDetailsExtends.length !== 0 ? (
+                videoDetails && videoDetails.length !== 0 ? (
                     <div className="card mt-[20px] h-[250px] sm:h-[150px] md:h-[200px] w-full border-[0px] sm:border-[0px]">
                         <div className="card-body h-full w-full p-0 sm:flex flex-nowrap items-start">
                             <div
@@ -87,7 +83,7 @@ export default function SearchVideo(props) {
                                                 {props.video.snippet?.channelTitle}
                                             </h1>
                                             <div className='text-[10px] sm:text-[12px] font-semibold text-gray-600 flex flex-nowrap items-center mt-1 sm:mt-0'>
-                                                <h1><Numeral value={searchVideoDetailsExtends.statistics?.viewCount} format={"0,a"} /> views</h1>
+                                                <h1><Numeral value={videoDetails.statistics?.viewCount} format={"0,a"} /> views</h1>
                                                 <h1><BsDot /></h1>
                                                 <h1>{moment(props.video.snippet.publishedAt).fromNow()}</h1>
                                             </div>

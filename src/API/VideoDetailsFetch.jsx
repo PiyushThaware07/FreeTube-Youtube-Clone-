@@ -3,7 +3,6 @@ const ApiKey = import.meta.env.VITE_REACT_APP_API_KEY;
 async function fetchVideoDetails(videoId) {
     const response = await fetch(`https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${videoId}&key=${ApiKey}`);
     const data = await response.json();
-    console.log("api called data :",data);
     return data;
 }
 

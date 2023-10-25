@@ -63,7 +63,7 @@ export default function Navbar() {
                         </div>
                     </div>
                 </div>
-                <div className={`my-5 sm:hidden ${toggleSearch ? "" : "hidden"}`}>
+                <div className={`my-5 md:hidden ${toggleSearch ? "" : "hidden"}`}>
                     <form action="" className='flex flex-nowrap items-center h-[40px]' onSubmit={handleFormSubmit}>
                         <input type="text" placeholder='Search' className='h-full w-full border-[1.8px] border-e-0 border-gray-400 rounded-s-full ps-4 focus:outline-none' onChange={(event) => setInputQuery(event.target.value)} />
                         <button type='submit' className='h-full px-3 bg-gray-200 border-[1.8px] border-gray-400 rounded-e-full' ><BiSearch /></button>
