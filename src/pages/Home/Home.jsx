@@ -76,7 +76,8 @@ export default function Home() {
                             </div>
                         </div>
                     </InfiniteScroll>
-                ) : (navigate('/'))
+                ) : "" 
+                // (navigate('/'))
             }
 
         </>

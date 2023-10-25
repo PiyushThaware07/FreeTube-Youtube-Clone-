@@ -14,9 +14,10 @@ import ChannelHome from './pages/Channel/ChannelHome';
 import ChannelVideos from './pages/Channel/ChannelVideos';
 import ChannelPlaylist from './pages/Channel/ChannelPlaylist';
 // Sidebar Handling
-import History from './pages/Sidebar/History';
+import History from './pages/Sidebar/History/History';
 
 import Temp from './pages/Temp';
+import Subscription from './pages/Sidebar/Subscription';
 
 
 export default function App() {
@@ -52,6 +53,7 @@ export default function App() {
 
             {/* Sidebar Items */}
             <Route path='history' element={<History/>} />
+            <Route path='subscription' element={<Subscription/>} />
 
 
             <Route path='*' element={<h1>404 page not found</h1>} />

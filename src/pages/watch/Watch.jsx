@@ -10,14 +10,15 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Numeral } from 'react-numeral';
 import moment from 'moment';
 import Loading from "../../components/Loading";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import WatchSidebar from './WatchSidebar';
 import WatchCommet from './WatchCommet';
 
-
+import { addVideo } from '../../Redux/Slice/HistorySlice';
 
 const ApiKey = import.meta.env.VITE_REACT_APP_API_KEY;
 export default function Watch() {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     // handeling video details
     const { video_id } = useParams();
@@ -28,6 +29,7 @@ export default function Watch() {
             const response = await fetch(url);
             const data = await response.json();
             setWatchDetail(data.items[0])
+            dispatch(addVideo(data.items[0]));
         }
         catch (error) {
             console.error("failed to fetch the video details", error);
@@ -36,7 +38,7 @@ export default function Watch() {
     useEffect(() => {
         fetchVideoDetails();
     }, [video_id])
-    console.table("Video details : ", watchDetail);
+    // console.table("Video details : ", watchDetail);
 
     // Handeling channel details
     const [channelDetails, setChannelDetails] = useState('');
@@ -55,12 +57,12 @@ export default function Watch() {
     useEffect(() => {
         fetchChannelDetails();
     }, [watchDetail])
-    console.table("Channel Details: ", channelDetails);
+    // console.table("Channel Details: ", channelDetails);
     const channelThumbnail = channelDetails.snippet?.thumbnails?.high?.url || channelDetails.snippet?.thumbnails?.default?.url;
 
     // Handle sidebar videos
     const videos = useSelector((state) => state.videoReducer.videoArray);
-    console.table("Sidebar Videos : ", videos);
+    // console.table("Sidebar Videos : ", videos);
 
 
     // comment handling
@@ -79,7 +81,7 @@ export default function Watch() {
     useEffect(() => {
         handleComments();
     }, [video_id])
-    console.log("Comments : ", comments);
+    // console.log("Comments : ", comments);
 
 
 
@@ -88,7 +90,6 @@ export default function Watch() {
     function handleToggleComent() {
         setToggleComment((value) => !value);
     }
-
 
 
     return (
