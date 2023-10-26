@@ -25,8 +25,6 @@ export default function Channel() {
     fetchChannelDetails();
   }, [channel_id])
 
-  // console.log("Channel Details : ", channelDetails);
-
   return (
     <>
       {

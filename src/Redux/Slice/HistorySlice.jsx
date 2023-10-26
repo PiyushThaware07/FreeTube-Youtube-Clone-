@@ -19,9 +19,12 @@ const HistorySlice = createSlice({
         removeVideo: (state, action) => {
             let newVideo = action.payload;
             state.HistoryArray = state.HistoryArray.filter((video) => video.id !== newVideo.id)
+        },
+        clearVideo:(state)=>{
+            state.HistoryArray = [];
         }
     }
 })
 
 export default HistorySlice.reducer;
-export const { addVideo, removeVideo } = HistorySlice.actions;
+export const { addVideo, removeVideo,clearVideo } = HistorySlice.actions;

@@ -6,15 +6,15 @@ export default function WatchCommet(props) {
     const navigate = useNavigate();
     return (
         <>
-            <div className={`my-2 md:flex flex-nowrap items-start p-3  ${props.toggleComment?"flex":"hidden"} `}>
-                <div className="profile bg-gray-200 h-[40px] w-[40px] rounded-full"
+            <div className={`my-2 md:flex flex-nowrap items-start p-3  ${props.toggleComment ? "flex" : "hidden"} `}>
+                <div className="profile bg-gray-200 h-[40px] w-[40px] rounded-full cursor-pointer"
                     style={{
                         backgroundImage: `url('${props.comment?.snippet?.topLevelComment?.snippet?.authorProfileImageUrl || ""}')`,
                         backgroundRepeat: "no-repeat",
                         backgroundPosition: "center",
                         backgroundSize: "cover"
                     }}
-                    onClick={()=>navigate(`/${props.comment?.snippet?.topLevelComment?.snippet?.channelId}`)}
+                    onClick={() => navigate(`/home/channel/${props.comment?.snippet?.topLevelComment?.snippet?.channelId}`)}
                 ></div>
                 <div className="ms-3 flex-1">
                     <div className="flex flex-nowrap items-center gap-3">

@@ -10,17 +10,20 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Numeral } from 'react-numeral';
 import moment from 'moment';
 import Loading from "../../components/Loading";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import WatchSidebar from './WatchSidebar';
 import WatchCommet from './WatchCommet';
 
-import { addVideo } from '../../Redux/Slice/HistorySlice';
-
+// Apis
 import { fetchVideoDetails } from "../../API/VideoDetailsFetch";
 import { fetchChannelDetails } from "../../API/ChannelDetailsFetch";
+// Redux
+import { addVideo } from '../../Redux/Slice/HistorySlice';
+import { addLike } from '../../Redux/Slice/LikeSlice';
 
 const ApiKey = import.meta.env.VITE_REACT_APP_API_KEY;
 export default function Watch() {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
 
@@ -33,6 +36,7 @@ export default function Watch() {
             try {
                 const data = await fetchVideoDetails(video_id);
                 setVideoDetails(data.items[0]);
+                dispatch(addVideo(data.items[0]))
             } catch (error) {
                 console.error("Error fetching channel details:", error);
             }
@@ -89,6 +93,19 @@ export default function Watch() {
     }
 
 
+    // Handling Likes -------------------------------------------------------
+    const [btnColor, setBtnColor] = useState(false);
+    const LikedVideos = useSelector((state) => state.LikeReducer.LikeArray);
+    const isVideoInLikedVideos = LikedVideos.some((video) => video.id === videoDetails.id);
+    console.log(isVideoInLikedVideos);
+    function handleLikeBtn() {
+        if (!isVideoInLikedVideos) {
+            dispatch(addLike(videoDetails))
+            setBtnColor(true);
+        }
+    }
+
+
     return (
         <>
             <div className="watch-main h-screen pt-20 overflow-y-scroll relative">
@@ -133,7 +150,9 @@ export default function Watch() {
                                                     </div>
                                                     <div className="section-2 flex flex-nowrap items-center">
                                                         <div className="hidden lg:flex flex-nowrap items-center">
-                                                            <button className='flex flex-nowrap items-center text-sm font-medium border-[1.4px] border-e-0 border-gray-300 p-2 rounded-s-full'><span><BiLike className='text-lg me-1' /></span><Numeral value={videoDetails?.statistics?.likeCount || 'N/A'} format={"0,a"} /></button>
+                                                            <button className={`flex flex-nowrap items-center text-sm font-medium border-[1.4px] ${btnColor || isVideoInLikedVideos ? "bg-gray-900 text-white" : "border-e-0 border-gray-300"} p-2 rounded-s-full`}
+                                                                onClick={() => handleLikeBtn()}
+                                                            ><span><BiLike className='text-lg me-1' /></span><Numeral value={videoDetails?.statistics?.likeCount || 'N/A'} format={"0,a"} /></button>
                                                             <button className='flex flex-nowrap items-center text-sm font-medium border-[1.4px] bg-gray-100 border-gray-300 p-2 border-e-0'><span><BiDislike className='text-lg me-1' /></span><span>Dislike</span></button>
                                                             <button className='flex flex-nowrap items-center text-sm font-medium border-[1.4px] border-gray-300 p-2 rounded-e-full'><span><PiShareFat className='text-lg me-1' /></span><span>Share</span></button>
                                                         </div>
@@ -145,7 +164,7 @@ export default function Watch() {
 
                                         <div className="responsive-like mt-3">
                                             <div className="flex lg:hidden flex-nowrap items-center">
-                                                <button className='flex flex-1 flex-nowrap items-center text-sm font-medium border-[1.4px] border-e-0 border-gray-300 p-2 rounded-s-full'><span><BiLike className='text-lg me-1' /></span><Numeral value={videoDetails?.statistics?.likeCount || 'N/A'} format={"0,a"} /></button>
+                                                <button className={`flex flex-1 flex-nowrap items-center text-sm font-medium border-[1.4px] ${btnColor || isVideoInLikedVideos ? "bg-gray-900 text-white" : "border-e-0 border-gray-300"}  p-2 rounded-s-full uppercase`} onClick={() => handleLikeBtn()}><span><BiLike className='text-lg me-1' /></span><Numeral value={videoDetails?.statistics?.likeCount || 'N/A'} format={"0,a"} /></button>
                                                 <button className='flex flex-1 flex-nowrap items-center text-sm font-medium border-[1.4px] bg-gray-100 border-gray-300 p-2'><span><BiDislike className='text-lg me-1' /></span><span>Dislike</span></button>
                                                 <button className='flex flex-1 flex-nowrap items-center text-sm font-medium border-[1.4px] border-s-0 border-gray-300 p-2'><span><PiShareFat className='text-lg me-1' /></span><span>Share</span></button>
                                                 <button className='flex flex-1 flex-nowrap items-center text-sm font-medium border-[1.4px] border-s-0 border-gray-300 p-2 rounded-e-full'><span><AiOutlineSave className='text-lg me-1' /></span><span>Save</span></button>
