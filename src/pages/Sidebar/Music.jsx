@@ -9,14 +9,14 @@ export default function Music() {
         <>
             <div className="movies-main h-screen w-screen pt-20">
                 <div className="movies-content px-[30px] sm:px-[60px] md:px-[60px] py-8">
-                    <div className="flex flex-nowrap items-center justify-between pb-[20px] border-b mb-[30px]">
-                        <div className="flex flex-nowrap items-center gap-2 sm:gap-3">
-                            <h1 className='h-[40px] sm:h-[50px] md:h-[70px] w-[40px] sm:w-[50px] md:w-[70px] bg-gradient-to-r text-white from-purple-500 to-blue-500 flex flex-nowrap items-center justify-center rounded-full'><RiFileMusicFill className='h-[45%] w-[45%]' /></h1>
+                    <div className="sm:flex flex-nowrap items-center justify-between pb-[20px] border-b mb-[30px] sm:mb-[0px]">
+                        <div className="mb-3 sm:mb-0 flex flex-nowrap items-center gap-2 sm:gap-3 justify-center sm:justify-start">
+                            <h1 className=' h-[40px] sm:h-[50px] md:h-[70px] w-[40px] sm:w-[50px] md:w-[70px] bg-gradient-to-r text-white from-purple-500 to-blue-500 flex flex-nowrap items-center justify-center rounded-full'><RiFileMusicFill className='h-[45%] w-[45%]' /></h1>
                             <h1 className='text-xl sm:text-3xl md:text-4xl  font-bold'>Music</h1>
                         </div>
                         <div className="h-[40px]">
                             <form action="" className='h-full flex flex-nowrap items-center border-b border-gray-400 px-2 sm:px-4 pb-2'>
-                                <input type="text" placeholder='Search Music' className='focus:outline-none' />
+                                <input type="text" placeholder='Search Music' className='focus:outline-none flex-1' />
                                 <button><TbWorldSearch className='text-xl text-purple-500' /></button>
                             </form>
                         </div>
