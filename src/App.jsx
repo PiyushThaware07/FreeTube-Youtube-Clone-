@@ -15,10 +15,14 @@ import ChannelVideos from './pages/Channel/ChannelVideos';
 import ChannelPlaylist from './pages/Channel/ChannelPlaylist';
 // Sidebar Handling
 import History from './pages/Sidebar/History';
-
-import Temp from './pages/Temp';
 import Subscription from './pages/Sidebar/Subscription';
 import Like from "./pages/Sidebar/Like";
+import Movies from "./pages/Sidebar/Movies";
+import Music from './pages/Sidebar/Music';
+
+
+
+import Temp from './pages/Temp';
 
 
 export default function App() {
@@ -56,9 +60,11 @@ export default function App() {
             <Route path='history' element={<History />} />
             <Route path='subscription' element={<Subscription />} />
             <Route path='liked videos' element={<Like />} />
+            <Route path='movies' element={<Movies />} />
+            <Route path='music' element={<Music />} />
 
 
-            <Route path='*' element={<h1>404 page not found</h1>} />
+            <Route path='*' element={<h1 className='pt-20'>404 page not found</h1>} />
           </Route>
         </Routes>
       </Router>

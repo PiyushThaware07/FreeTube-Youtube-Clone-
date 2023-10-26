@@ -16,7 +16,7 @@ import { GiClothes } from "react-icons/gi";
 import { ImInstagram } from "react-icons/im";
 
 // React Router DOM
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import { googleLogout } from '@react-oauth/google';
 
@@ -114,6 +114,9 @@ const itemsList03 = [
 
 export default function Sidebar() {
     const navigate = useNavigate();
+    const location = useLocation();
+
+
     return (
         <>
 
@@ -140,7 +143,7 @@ export default function Sidebar() {
                             <h1 className='px-[30px] py-[12px] md:py-[16px] text-[14px] font-semibold bg-gray-100'>Explore</h1>
                             {
                                 itemsList02.map((item, index) => (
-                                    <li key={index} className='px-[30px] py-[12px] md:py-[16px] hover:bg-gray-100'><button className='flex flex-nowrap items-center text-[20px] font-semibold gap-2'>{item.icon}<span className='text-[13px] capitalize'>{item.name}</span></button></li>
+                                    <li key={index} className='px-[30px] py-[12px] md:py-[16px] hover:bg-gray-100'><button className='flex flex-nowrap items-center text-[20px] font-semibold gap-2' onClick={() => navigate(`/home/${item.name}`)} data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"  >{item.icon}<span className='text-[13px] capitalize'>{item.name}</span></button></li>
                                 ))
                             }
                         </ul>

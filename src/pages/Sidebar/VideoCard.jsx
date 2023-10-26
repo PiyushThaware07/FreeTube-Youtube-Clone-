@@ -53,9 +53,9 @@ export default function VideoCard(props) {
                         onClick={() => navigate(`/home/watch/${props.video.id}`)}
                     >
                         <div className="bg-gray-800 text-white absolute bottom-2 right-2 text-[10px] font-medium px-2 py-1 rounded-xl">{formatted_duration}</div>
-                        <div className={`bg-gray-800 text-white absolute top-[-10px] left-[-10px] text-[12px] font-medium h-[30px] w-[30px] rounded-full  ${location.pathname.includes('History')?"hidden":"flex"} flex-nowrap items-center justify-center`}>{props.index + 1}</div>
+                        <div className={`bg-gray-800 text-white absolute top-[-10px] left-[-10px] text-[12px] font-medium h-[30px] w-[30px] rounded-full  ${location.pathname.includes('History') ? "hidden" : "flex"} flex-nowrap items-center justify-center`}>{props.index + 1}</div>
                     </div>
-                    <button className={`bg-gray-800 text-white absolute top-1 right-1 text-sm px-[10px] py-[5px] font-medium gap-6 ps-[16px] rounded-full ${location.pathname.includes('History')?"flex":"hidden"}  flex-nowrap items-center justify-center`} onClick={() => dispatch(removeVideo(props.video))}>{props.index + 1} <IoCloseSharp className='text-xl' /></button>
+                    <button className={`bg-gray-800 text-white absolute top-1 right-1 text-sm px-[10px] py-[5px] font-medium gap-6 ps-[16px] rounded-full ${location.pathname.includes('History') ? "flex" : "hidden"}  flex-nowrap items-center justify-center`} onClick={() => dispatch(removeVideo(props.video))}>{props.index + 1} <IoCloseSharp className='text-xl' /></button>
 
 
                     <div className="details flex flex-nowrap gap-2 mt-2">
