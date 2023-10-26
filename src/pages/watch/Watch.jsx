@@ -150,7 +150,7 @@ export default function Watch() {
                                                     </div>
                                                     <div className="section-2 flex flex-nowrap items-center">
                                                         <div className="hidden lg:flex flex-nowrap items-center">
-                                                            <button className={`flex flex-nowrap items-center text-sm font-medium border-[1.4px] ${btnColor || isVideoInLikedVideos ? "bg-gray-900 text-white" : "border-e-0 border-gray-300"} p-2 rounded-s-full`}
+                                                            <button className={`flex flex-nowrap items-center text-sm font-medium border-[1.4px] ${btnColor || isVideoInLikedVideos ? "bg-gray-900 text-white border-e-0 border-gray-900" : "border-e-0 border-gray-300"} p-2 rounded-s-full`}
                                                                 onClick={() => handleLikeBtn()}
                                                             ><span><BiLike className='text-lg me-1' /></span><Numeral value={videoDetails?.statistics?.likeCount || 'N/A'} format={"0,a"} /></button>
                                                             <button className='flex flex-nowrap items-center text-sm font-medium border-[1.4px] bg-gray-100 border-gray-300 p-2 border-e-0'><span><BiDislike className='text-lg me-1' /></span><span>Dislike</span></button>
@@ -164,7 +164,7 @@ export default function Watch() {
 
                                         <div className="responsive-like mt-3">
                                             <div className="flex lg:hidden flex-nowrap items-center">
-                                                <button className={`flex flex-1 flex-nowrap items-center text-sm font-medium border-[1.4px] ${btnColor || isVideoInLikedVideos ? "bg-gray-900 text-white" : "border-e-0 border-gray-300"}  p-2 rounded-s-full uppercase`} onClick={() => handleLikeBtn()}><span><BiLike className='text-lg me-1' /></span><Numeral value={videoDetails?.statistics?.likeCount || 'N/A'} format={"0,a"} /></button>
+                                                <button className={`flex flex-1 flex-nowrap items-center text-sm font-medium border-[1.4px] ${btnColor || isVideoInLikedVideos ? "bg-gray-900 text-white border-e-0 border-gray-900" : "border-e-0 border-gray-300"}  p-2 rounded-s-full uppercase`} onClick={() => handleLikeBtn()}><span><BiLike className='text-lg me-1' /></span><Numeral value={videoDetails?.statistics?.likeCount || 'N/A'} format={"0,a"} /></button>
                                                 <button className='flex flex-1 flex-nowrap items-center text-sm font-medium border-[1.4px] bg-gray-100 border-gray-300 p-2'><span><BiDislike className='text-lg me-1' /></span><span>Dislike</span></button>
                                                 <button className='flex flex-1 flex-nowrap items-center text-sm font-medium border-[1.4px] border-s-0 border-gray-300 p-2'><span><PiShareFat className='text-lg me-1' /></span><span>Share</span></button>
                                                 <button className='flex flex-1 flex-nowrap items-center text-sm font-medium border-[1.4px] border-s-0 border-gray-300 p-2 rounded-e-full'><span><AiOutlineSave className='text-lg me-1' /></span><span>Save</span></button>

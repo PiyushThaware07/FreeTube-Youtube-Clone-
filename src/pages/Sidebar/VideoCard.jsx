@@ -4,15 +4,16 @@ import { Numeral } from "react-numeral";
 
 // Icons
 import { BsDot } from "react-icons/bs";
-import { GrFormClose } from "react-icons/gr";
+import { IoCloseSharp } from "react-icons/io5";
 // Apis
 import { fetchChannelDetails } from "../../API/ChannelDetailsFetch";
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 // redux
 import { removeVideo } from "../../Redux/Slice/HistorySlice";
 
 export default function VideoCard(props) {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     // Channel Handling 
     const [channelDetails, setChannelDetails] = useState([])
@@ -32,16 +33,8 @@ export default function VideoCard(props) {
     const duration = moment.duration(props.video.contentDetails?.duration);
     const formatted_duration = duration ? `${duration.minutes()}:${duration.seconds()}` : 'N/A';
 
+    const location = useLocation()
 
-    // Handle Card Hovered ---------------------------------------------
-    const dispatch = useDispatch();
-    const [hoveredCard, setHoveredCard] = useState(null);
-    const handleMouseEnter = (id) => {
-        setHoveredCard(id);
-    };
-    const handleMouseLeave = () => {
-        setHoveredCard(null);
-    };
 
 
     return (
@@ -60,9 +53,9 @@ export default function VideoCard(props) {
                         onClick={() => navigate(`/home/watch/${props.video.id}`)}
                     >
                         <div className="bg-gray-800 text-white absolute bottom-2 right-2 text-[10px] font-medium px-2 py-1 rounded-xl">{formatted_duration}</div>
-                        <div className={`bg-gray-800 text-white absolute top-[-10px] left-[-10px] text-[12px] font-medium h-[30px] w-[30px] rounded-full ${hoveredCard === props.index ? "hidden" : "flex"} flex-nowrap items-center justify-center`}>{props.index + 1}</div>
+                        <div className={`bg-gray-800 text-white absolute top-[-10px] left-[-10px] text-[12px] font-medium h-[30px] w-[30px] rounded-full  ${location.pathname.includes('History')?"hidden":"flex"} flex-nowrap items-center justify-center`}>{props.index + 1}</div>
                     </div>
-                    <button className={`bg-gray-200 absolute top-[-10px] left-[-10px] text-[12px] font-medium h-[30px] w-[30px] rounded-full ${hoveredCard === props.index ? "flex" : "hidden"} flex-nowrap items-center justify-center`} onClick={() => dispatch(removeVideo(props.video))}><GrFormClose className='text-xl' /></button>
+                    <button className={`bg-gray-800 text-white absolute top-1 right-1 text-sm px-[10px] py-[5px] font-medium gap-6 ps-[16px] rounded-full ${location.pathname.includes('History')?"flex":"hidden"}  flex-nowrap items-center justify-center`} onClick={() => dispatch(removeVideo(props.video))}>{props.index + 1} <IoCloseSharp className='text-xl' /></button>
 
 
                     <div className="details flex flex-nowrap gap-2 mt-2">
