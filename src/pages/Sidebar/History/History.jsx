@@ -27,7 +27,11 @@ export default function History() {
 
                 </div>
               )
-                : ("No History")
+                : (
+                  <div className='section1 md:w-[65%] lg:w-[60%] md:h-full md:overflow-y-scroll  px-6 sm:px-8 md:px-10 lg:px-18 xl:px-28 pt-12 md:py-12'>
+                    <h1 className='font-semibold text-2xl'>No History Found</h1>
+                  </div>
+                )
             }
 
 
