@@ -6,6 +6,7 @@ import { BiLike, BiDislike } from "react-icons/bi";
 import { PiShareFat } from "react-icons/pi";
 import { BsFillCaretDownFill, BsFillCaretUpFill } from "react-icons/bs";
 import { AiOutlineSave } from "react-icons/ai";
+import { FiRadio } from "react-icons/fi";
 import { useNavigate, useParams } from 'react-router-dom';
 import { Numeral } from 'react-numeral';
 import moment from 'moment';
@@ -43,6 +44,7 @@ export default function Watch() {
         };
         fetchData();
     }, [video_id]);
+    console.log("Videos Details : ", videoDetails);
 
     // Handeling channel details -----------------------------------------------
     const [channelDetails, setChannelDetails] = useState([])
@@ -174,7 +176,13 @@ export default function Watch() {
                                         <div className="watch-description mt-3 lg:mt-0">
                                             <div className="card bg-gray-50">
                                                 <div className="card-body">
-                                                    <h1 className='text-[11px] font-semibold'><span className='uppercase'><Numeral value={videoDetails?.statistics?.viewCount || 'N/A'} format={"0,a"} /></span>views <span className='mx-2'>.</span><span className='capitalize'>{moment(videoDetails.snippet.publishedAt).fromNow()}</span><span className='ms-2 text-[14px] text-slate-500'>@{videoDetails.snippet.channelTitle}</span></h1>
+                                                    {
+                                                        videoDetails?.snippet?.liveBroadcastContent === "live" ? (
+                                                            <h1 className='text-[11px] font-semibold'><span className='text-red-600  flex-nowrap items-center gap-2 inline-flex'>Live Streaming <FiRadio className="text-[13px]" /> </span> <span className='mx-2'>.</span><span className='capitalize'>{moment(videoDetails.snippet.publishedAt).fromNow()}</span><span className='ms-2 text-[14px] text-slate-500'>@{videoDetails.snippet.channelTitle}</span></h1>
+                                                        ) : (
+                                                            <h1 className='text-[11px] font-semibold'><span className='uppercase'><Numeral value={videoDetails?.statistics?.viewCount || 'N/A'} format={"0,a"} /></span>views <span className='mx-2'>.</span><span className='capitalize'>{moment(videoDetails.snippet.publishedAt).fromNow()}</span><span className='ms-2 text-[14px] text-slate-500'>@{videoDetails.snippet.channelTitle}</span></h1>
+                                                        )
+                                                    }
                                                     <div className="text-[13px] font-medium my-3">
                                                         <ShowMoreText
                                                             lines={3}

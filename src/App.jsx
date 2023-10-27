@@ -23,6 +23,7 @@ import Music from './pages/Sidebar/Music';
 
 
 import Temp from './pages/Temp';
+import Live from './pages/Sidebar/Live';
 
 
 export default function App() {
@@ -62,6 +63,7 @@ export default function App() {
             <Route path='liked videos' element={<Like />} />
             <Route path='movies' element={<Movies />} />
             <Route path='music' element={<Music />} />
+            <Route path='live' element={<Live />} />
 
 
             <Route path='*' element={<h1 className='pt-20'>404 page not found</h1>} />
