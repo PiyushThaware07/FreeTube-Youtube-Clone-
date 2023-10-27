@@ -132,7 +132,7 @@ export default function Sidebar() {
                 <div className="offcanvas-body">
                     <div className="content h-[100%] overflow-y-scroll">
                         <ul>
-                            <li className='px-[30px] py-[12px] md:py-[16px] hover:bg-gray-100'><button className='flex flex-nowrap items-center text-sm font-semibold gap-2' onClick={() => navigate('/home')}><GoHome className='text-[20px] capitalize' /><span className='text-[13px]'>Home</span></button></li>
+                            <li className='px-[30px] py-[12px] md:py-[16px] hover:bg-gray-100'><button className='flex flex-nowrap items-center text-sm font-semibold gap-2' onClick={() => navigate('/home')} data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"><GoHome className='text-[20px] capitalize' /><span className='text-[13px]'>Home</span></button></li>
                             <li className='px-[30px] py-[12px] md:py-[16px] hover:bg-gray-100'><button className='flex flex-nowrap items-center text-sm font-semibold gap-2' onClick={() => navigate('/')} data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" ><HiOutlineLogout className='text-[20px] capitalize' /><span className='text-[13px]'>Logout</span></button></li>
                             <hr />
                             {
